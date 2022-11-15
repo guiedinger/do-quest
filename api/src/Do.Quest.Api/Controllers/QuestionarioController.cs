@@ -1,5 +1,6 @@
+using Do.Quest.Api.Mappers;
 using Do.Quest.Api.Models.GrupoUsuario;
-using Do.Quest.Domain.Entities;
+using Do.Quest.Domain.Interfaces.Notifications;
 using Do.Quest.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,21 +8,23 @@ namespace Do.Quest.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class QuestionarioController : ControllerBase
+    public class QuestionarioController : MainController
     {
         private readonly ILogger<QuestionarioController> _logger;
         private readonly IGrupoUsuarioService _grupoUsuarioService;
 
-        public QuestionarioController(ILogger<QuestionarioController> logger, IGrupoUsuarioService grupoUsuarioService)
+        public QuestionarioController(ILogger<QuestionarioController> logger, 
+                                      IGrupoUsuarioService grupoUsuarioService,
+                                      INotificador notificador) : base(notificador)
         {
             _logger = logger;
             _grupoUsuarioService = grupoUsuarioService;
         }
 
-        [HttpPost]
-        public async Task AdicionarGrupoUsuarioAsync(GrupoUsuarioViewModel grupoUsuarioRequest)
+        [HttpPost("grupo-usuario")]
+        public async Task<ActionResult<string>> AdicionarGrupoUsuarioAsync(GrupoUsuarioViewModel grupoUsuarioRequest)
         {
-            await _grupoUsuarioService.AdicionarAsync(new GrupoUsuario(grupoUsuarioRequest.Descricao));
+            return Ok(await _grupoUsuarioService.AdicionarAsync(GrupoUsuarioMapper.Map(grupoUsuarioRequest)));
         }
     }
 }

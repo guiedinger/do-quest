@@ -10,6 +10,7 @@ namespace Do.Quest.Infra.Data.Context
     {
         private readonly IMongoDatabase _mongoDataBase;
 
+       
         internal IMongoCollection<Usuario> Usuarios => _mongoDataBase.GetCollection<Usuario>("Usuarios");
         internal IMongoCollection<GrupoUsuario> GruposUsuarios => _mongoDataBase.GetCollection<GrupoUsuario>("GruposUsuarios");
 
@@ -18,6 +19,7 @@ namespace Do.Quest.Infra.Data.Context
             RegisterConventions();
             _mongoDataBase = new MongoClient(configuration["NoSqlDatabaseSettings:ConnectionString"])
                     .GetDatabase(configuration["NoSqlDatabaseSettings:DatabaseName"]);
+            CreateUniqueIndexUsuarioLogin();
         }
 
         private static void RegisterConventions()
@@ -26,6 +28,14 @@ namespace Do.Quest.Infra.Data.Context
 
             var conventionPack = new ConventionPack { new IgnoreExtraElementsConvention(true) };
             ConventionRegistry.Register("IgnoreExtraElements", conventionPack, type => true);
+        }
+
+        private void CreateUniqueIndexUsuarioLogin()
+        {
+            var options = new CreateIndexOptions() { Unique = true };
+            var field = new StringFieldDefinition<Usuario>("Login");
+            var indexDefinition = new IndexKeysDefinitionBuilder<Usuario>().Ascending(field);
+            _mongoDataBase.GetCollection<Usuario>("Usuarios").Indexes.CreateOne(indexDefinition, options);
         }
     }
 }

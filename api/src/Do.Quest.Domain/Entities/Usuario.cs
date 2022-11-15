@@ -1,8 +1,7 @@
 ﻿namespace Do.Quest.Domain.Entities
 {
-    public class Usuario
+    public class Usuario : Entity
     {
-        public Guid Id { get; private set; }
         public string Login { get; private set; }
         public string Senha { get; private set; }
         public string Nome { get; private set; }
@@ -19,7 +18,6 @@
                        string sobrenome, 
                        DateTime dataNascimento)
         {
-            Id = Guid.NewGuid();
             Login = login;
             Senha = senha;
             Nome = nome;

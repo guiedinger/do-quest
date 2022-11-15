@@ -1,26 +1,31 @@
 ﻿using Do.Quest.Domain.Entities;
+using Do.Quest.Domain.Entities.Validators;
+using Do.Quest.Domain.Interfaces.Notifications;
 using Do.Quest.Domain.Interfaces.Repositories;
 using Do.Quest.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Do.Quest.Domain.Services
 {
-    public class GrupoUsuarioService : IGrupoUsuarioService
+    public class GrupoUsuarioService : BaseService, IGrupoUsuarioService
     {
         private readonly IQuestionarioRepository _questionarioRepository;
 
-        public GrupoUsuarioService(IQuestionarioRepository questionarioRepository)
+        public GrupoUsuarioService(IQuestionarioRepository questionarioRepository, 
+                                   INotificador notificador) 
+                                   : base (notificador)
         {
             _questionarioRepository = questionarioRepository;
         }
 
-        public async Task AdicionarAsync(GrupoUsuario grupoUsuario)
+        public async Task<string> AdicionarAsync(GrupoUsuario grupoUsuario)
         {
-            await _questionarioRepository.AdicionarGrupoUsuarios(grupoUsuario);
+            if (!ExecutarValidacao(new GrupoUsuarioValidator(), grupoUsuario)) 
+                return null;
+
+            await _questionarioRepository.AdicionarUsuariosAsync(grupoUsuario.Usuarios);
+            await _questionarioRepository.AdicionarGrupoUsuariosAsync(grupoUsuario);
+            
+            return grupoUsuario.Id.ToString();
         }
     }
 }

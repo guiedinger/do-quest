@@ -5,6 +5,7 @@ namespace Do.Quest.Domain.Interfaces.Repositories
     public interface IQuestionarioRepository
     {
         Task AdicionarUsuarioAsync(Usuario usuario);
-        Task AdicionarGrupoUsuarios(GrupoUsuario grupoUsuario);
+        Task AdicionarGrupoUsuariosAsync(GrupoUsuario grupoUsuario);
+        Task AdicionarUsuariosAsync(IEnumerable<Usuario> usuarios);
     }
 }

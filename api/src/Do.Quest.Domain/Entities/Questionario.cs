@@ -2,9 +2,8 @@
 
 namespace Do.Quest.Domain.Entities
 {
-    public class Questionario
+    public class Questionario : Entity
     {
-        public Guid Id{ get; private set; }
         public string Descricao{ get; private set; }
         public DateTime DataInicio{ get; private set; }
         public DateTime DataFim{ get; private set; }
@@ -18,7 +17,6 @@ namespace Do.Quest.Domain.Entities
                             DateTime dataInicio, 
                             DateTime dataFim)
         {
-            Id = Guid.NewGuid();
             Descricao = descricao;
             DataInicio = dataInicio;
             DataFim = dataFim;

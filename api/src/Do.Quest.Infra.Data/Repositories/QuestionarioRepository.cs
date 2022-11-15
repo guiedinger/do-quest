@@ -13,7 +13,7 @@ namespace Do.Quest.Infra.Data.Repositories
             _questionarioContext = questionarioContext;
         }
 
-        public async Task AdicionarGrupoUsuarios(GrupoUsuario grupoUsuario)
+        public async Task AdicionarGrupoUsuariosAsync(GrupoUsuario grupoUsuario)
         {
             await _questionarioContext.GruposUsuarios.InsertOneAsync(grupoUsuario);
         }
@@ -21,6 +21,11 @@ namespace Do.Quest.Infra.Data.Repositories
         public async Task AdicionarUsuarioAsync(Usuario usuario)
         {
            await _questionarioContext.Usuarios.InsertOneAsync(usuario);
+        }
+
+        public async Task AdicionarUsuariosAsync(IEnumerable<Usuario> usuarios)
+        {
+            await _questionarioContext.Usuarios.InsertManyAsync(usuarios);
         }
     }
 }

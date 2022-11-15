@@ -1,8 +1,7 @@
 ﻿namespace Do.Quest.Domain.Entities
 {
-    public class Pergunta
+    public class Pergunta : Entity
     {
-        public Guid Id { get; private set; }
         public string Descricao { get; private set; }
         public Resposta Resposta { get; private set; }
 
@@ -10,13 +9,11 @@
 
         public Pergunta(string descricao)
         {
-            Id = Guid.NewGuid();
             Descricao = descricao;
         }
 
         public Pergunta(string descricao, Resposta resposta)
         {
-            Id = Guid.NewGuid();
             Descricao = descricao;
             Resposta = resposta;
         }
