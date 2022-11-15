@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Do.Quest.Domain.Entities
+﻿namespace Do.Quest.Domain.Entities
 {
     public class Usuario
     {
@@ -15,10 +9,15 @@ namespace Do.Quest.Domain.Entities
         public string Sobrenome{ get; private set; }
         public DateTime DataNascimento { get; private set; }
         public GrupoUsuario GrupoUsuario { get; private set; }
+        public bool RespondeuAoQuestionario{ get; private set; }
 
         private Usuario() { }
 
-        public Usuario(string login, string senha, string nome, string sobrenome, DateTime dataNascimento)
+        public Usuario(string login, 
+                       string senha, 
+                       string nome, 
+                       string sobrenome, 
+                       DateTime dataNascimento)
         {
             Id = Guid.NewGuid();
             Login = login;
@@ -26,6 +25,12 @@ namespace Do.Quest.Domain.Entities
             Nome = nome;
             Sobrenome = sobrenome;
             DataNascimento = dataNascimento;
+            RespondeuAoQuestionario = false;
+        }
+
+        public void DefinirQueRespondeuAoQuestionario()
+        {
+            RespondeuAoQuestionario = true;
         }
     }
 }
