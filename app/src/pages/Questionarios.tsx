@@ -1,4 +1,5 @@
 import { Button, Paper, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { Template } from "../components/Template";
 import { IQuestionario } from "./Questionario";
 
@@ -43,6 +44,7 @@ interface IQuestionarioItem {
 }
 
 const QuestionarioItem = ({ questionario }: IQuestionarioItem) => {
+  const navigate = useNavigate();
   return (
     <Paper
       sx={{
@@ -57,7 +59,11 @@ const QuestionarioItem = ({ questionario }: IQuestionarioItem) => {
       <Typography variant="body1" component="div">
         {questionario.descricao}
       </Typography>
-      <Button variant="contained" disabled={!questionario.vigente}>
+      <Button
+        variant="contained"
+        disabled={!questionario.vigente}
+        onClick={() => navigate("/questionario")}
+      >
         Responder
       </Button>
     </Paper>

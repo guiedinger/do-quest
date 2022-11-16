@@ -111,6 +111,7 @@ const PerguntaItem = ({ pergunta }: IPerguntaItem) => {
           {pergunta.alternativas &&
             pergunta.alternativas.map((a) => (
               <FormControlLabel
+                key={a.codigo}
                 value={a.codigo}
                 control={<Radio />}
                 label={a.descricao}
