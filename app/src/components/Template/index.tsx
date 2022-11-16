@@ -7,7 +7,10 @@ export const Template = ({ children }: IProps) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar />
-      <Container maxWidth="sm" sx={{ marginTop: "1rem" }}>
+      <Container
+        maxWidth="sm"
+        sx={{ marginTop: "1rem", display: "flex", flexDirection: "column" }}
+      >
         {children}
       </Container>
     </Box>

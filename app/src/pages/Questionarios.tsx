@@ -1,19 +1,20 @@
-import { Box, Button, Paper, Typography } from "@mui/material";
+import { Button, Paper, Typography } from "@mui/material";
 import { Template } from "../components/Template";
-interface Questionario {
-  descricao: string;
-  vigente: boolean;
-}
-const questionarios: Questionario[] = [
+import { IQuestionario } from "./Questionario";
+
+const questionarios: IQuestionario[] = [
   {
+    id: "1",
     descricao: "Avaliação do curso",
     vigente: true,
   },
   {
+    id: "2",
     descricao: "Avaliação da infraestrutura",
     vigente: true,
   },
   {
+    id: "3",
     descricao: "Avaliação dos docentes",
     vigente: false,
   },
@@ -31,14 +32,14 @@ export const Questionarios = () => {
         Questionários
       </Typography>
       {questionarios.map((q) => (
-        <QuestionarioItem questionario={q} />
+        <QuestionarioItem key={q.id} questionario={q} />
       ))}
     </Template>
   );
 };
 
 interface IQuestionarioItem {
-  questionario: Questionario;
+  questionario: IQuestionario;
 }
 
 const QuestionarioItem = ({ questionario }: IQuestionarioItem) => {
@@ -50,6 +51,7 @@ const QuestionarioItem = ({ questionario }: IQuestionarioItem) => {
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
+        alignItems: "center",
       }}
     >
       <Typography variant="body1" component="div">
