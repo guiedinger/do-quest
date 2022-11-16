@@ -1,4 +1,12 @@
-import { Button, Paper, Rating, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  FormControlLabel,
+  Paper,
+  Radio,
+  RadioGroup,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Template } from "../components/Template";
 
 export interface IQuestionario {
@@ -12,6 +20,12 @@ export interface IPergunta {
   id: string;
   descricao: string;
   tipo: "Dissertativa" | "Objetiva";
+  alternativas?: IAlternativa[];
+}
+
+export interface IAlternativa {
+  codigo: string;
+  descricao: string;
 }
 
 export const Questionario = () => {
@@ -22,16 +36,31 @@ export const Questionario = () => {
     perguntas: [
       {
         id: "1",
-        descricao: "Descreva o que deve melhorar no curso",
+        descricao: "Descreva o que deve melhorar no curso:",
         tipo: "Dissertativa",
       },
       {
         id: "2",
-        descricao: "Nota para o curso",
+        descricao: "Qual a sua satisfação com o curso?",
         tipo: "Objetiva",
+        alternativas: [
+          {
+            codigo: "I",
+            descricao: "Insatisfeito",
+          },
+          {
+            codigo: "N",
+            descricao: "Neutro",
+          },
+          {
+            codigo: "S",
+            descricao: "Satisfeito",
+          },
+        ],
       },
     ],
   };
+
   return (
     <Template>
       <Typography
@@ -68,6 +97,7 @@ const PerguntaItem = ({ pergunta }: IPerguntaItem) => {
         marginTop: "1rem",
         display: "flex",
         flexDirection: "column",
+        gap: "1rem",
       }}
     >
       <Typography variant="body1" component="div">
@@ -76,7 +106,18 @@ const PerguntaItem = ({ pergunta }: IPerguntaItem) => {
       {pergunta.tipo === "Dissertativa" ? (
         <TextField label="Resposta" multiline />
       ) : null}
-      {pergunta.tipo === "Objetiva" ? <Rating value={null} /> : null}
+      {pergunta.tipo === "Objetiva" ? (
+        <RadioGroup>
+          {pergunta.alternativas &&
+            pergunta.alternativas.map((a) => (
+              <FormControlLabel
+                value={a.codigo}
+                control={<Radio />}
+                label={a.descricao}
+              />
+            ))}
+        </RadioGroup>
+      ) : null}
     </Paper>
   );
 };
