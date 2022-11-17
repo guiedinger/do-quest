@@ -13,10 +13,7 @@ namespace Do.Quest.Domain.Entities
 
         private Questionario() { }
 
-        public Questionario(string descricao, 
-                            DateTime dataInicio, 
-                            DateTime dataFim)
-        {
+        public Questionario(string descricao, DateTime dataInicio, DateTime dataFim) {
             Descricao = descricao;
             DataInicio = dataInicio;
             DataFim = dataFim;
@@ -25,8 +22,7 @@ namespace Do.Quest.Domain.Entities
             Perguntas = new List<Pergunta>();
         }
 
-        public void AdicionarPergunta(Pergunta pergunta)
-        {
+        public void AdicionarPergunta(Pergunta pergunta) {
             Perguntas.Add(pergunta);
         }
 
