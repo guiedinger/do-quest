@@ -31,10 +31,15 @@ namespace Do.Quest.Domain.Services {
              return "cadastrado";
         }
 
-
-        public async Task GetAsync(GrupoUsuario grupoUsuario)
+        public Task GetAsync(GrupoUsuario grupoUsuario)
         {
-            await _questionarioRepository.GetQuestionario(grupoUsuario);
+            return _questionarioRepository.GetAsync(grupoUsuario);
+
+        }
+
+        public Questionario? GetQuestionario(Guid idQuestionario)
+        {
+            return _questionarioRepository.GetQuestionario(idQuestionario);
         }
     }
 

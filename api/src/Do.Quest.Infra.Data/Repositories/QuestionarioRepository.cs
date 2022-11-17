@@ -48,6 +48,13 @@ namespace Do.Quest.Infra.Data.Repositories
                 await _questionarioContext.Questionario.InsertOneAsync(questionario);
             }
         }
+
+        public Task GetAsync(GrupoUsuario grupoUsuario)
+        {
+            return _questionarioContext.Usuarios.Find(x => x.GrupoUsuario.Id == grupoUsuario.Id).ToListAsync();
+
+        }
+
         public List<Questionario> GetQuestionario(GrupoUsuario grupoUsuario)
         {
             List<Questionario> quest = null;
@@ -68,9 +75,10 @@ namespace Do.Quest.Infra.Data.Repositories
         }
 
 
-        Task IQuestionarioRepository.GetQuestionario(GrupoUsuario grupoUsuario)
+        public Questionario? GetQuestionario(Guid idQuest)
         {
-            throw new NotImplementedException();
+            var quest = _questionarioContext.Questionario.AsQueryable().FirstOrDefault(x => x.Id == idQuest);
+            return quest;
         }
     }
 }

@@ -33,6 +33,13 @@ namespace Do.Quest.Api.Controllers
             return Ok();
         }
 
+        [HttpGet("questionario/{id}")]
+        public ActionResult GetQuestionarioById([FromRoute] Guid id)
+        {
+            var quest = _questionarioService.GetQuestionario(id);
+            return Ok(quest);
+        }
+
         [HttpPost("grupo-usuario")]
         public async Task<ActionResult<string>> AdicionarGrupoUsuarioAsync(GrupoUsuarioViewModel grupoUsuarioRequest)
         {
@@ -46,4 +53,5 @@ namespace Do.Quest.Api.Controllers
             return Ok();
         }
     }
+
 }
