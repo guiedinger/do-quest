@@ -5,11 +5,11 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Do.Quest.Api", "src\Do.Quest.Api\Do.Quest.Api.csproj", "{EDE5636A-E2B9-4C32-AAB5-442EAF0CDB5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Do.Quest.Domain", "src\Do.Quest.Domain\Do.Quest.Domain.csproj", "{69E39CDE-79AC-47FB-99E1-01D247BC7318}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Do.Quest.Domain", "src\Do.Quest.Domain\Do.Quest.Domain.csproj", "{69E39CDE-79AC-47FB-99E1-01D247BC7318}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Do.Quest.Infra.Data", "src\Do.Quest.Infra.Data\Do.Quest.Infra.Data.csproj", "{FC1C79EA-83E4-48E0-8039-2C5682F8A152}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Do.Quest.Infra.Data", "src\Do.Quest.Infra.Data\Do.Quest.Infra.Data.csproj", "{FC1C79EA-83E4-48E0-8039-2C5682F8A152}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Do.Quest.Domain.Test", "tests\Do.Quest.Domain.Test\Do.Quest.Domain.Test.csproj", "{A00C1AAA-DDCA-43AA-989E-17CCCF991E44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Do.Quest.Domain.Test", "tests\Do.Quest.Domain.Test\Do.Quest.Domain.Test.csproj", "{A00C1AAA-DDCA-43AA-989E-17CCCF991E44}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Web Api", "01 - Web Api", "{348BB29B-31EE-46E4-B3F5-8B075801DA0A}"
 EndProject

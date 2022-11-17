@@ -17,6 +17,8 @@ namespace Do.Quest.Domain.Services {
          _questionarioRepository = questionarioRepository;
       }
 
+ 
+
       public async Task<string> AdicionarAsync(Usuario usuario, GrupoUsuario grupoUsuario, IEnumerable<Usuario> usuarios) {
          await _questionarioRepository.AdicionarUsuarioAsync(usuario);
          await _questionarioRepository.AdicionarGrupoUsuariosAsync(grupoUsuario);
@@ -28,6 +30,11 @@ namespace Do.Quest.Domain.Services {
          await _questionarioRepository.Cadastrar(questionario);
          return "cadastrado";
       }
-	}
+
+        public async Task<Questionario> GetAsync(GrupoUsuario grupoUsuario)
+        {
+            await _questionarioRepository.GetQuestionario(grupoUsuario);
+        }
+    }
 
 }

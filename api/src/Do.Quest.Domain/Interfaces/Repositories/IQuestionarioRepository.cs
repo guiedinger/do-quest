@@ -7,5 +7,6 @@ namespace Do.Quest.Domain.Interfaces.Repositories
       Task AdicionarUsuarioAsync(Usuario usuario);
       Task AdicionarGrupoUsuariosAsync(GrupoUsuario grupoUsuario);
       Task AdicionarUsuariosAsync(IEnumerable<Usuario> usuarios);
+      Task GetQuestionario(GrupoUsuario grupoUsuario);
    }
 }
