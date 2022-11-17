@@ -1,7 +1,9 @@
 ﻿using Do.Quest.Api.Mappers;
 using Do.Quest.Api.Models.Usuario;
 using Do.Quest.Domain.Entities;
+using Do.Quest.Domain.Interfaces.Notifications;
 using Do.Quest.Domain.Interfaces.Services;
+using Do.Quest.Domain.Notifications;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
@@ -11,11 +13,12 @@ namespace Do.Quest.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : MainController
     {
         private readonly IUserService _userService;
 
-        public UserController(IUserService usuarioService)
+
+        public UserController(IUserService usuarioService, INotificador notificador) : base(notificador)
         {
             _userService = usuarioService;
         }
@@ -33,10 +36,11 @@ namespace Do.Quest.Api.Controllers
         [HttpPost("login")]
         public ActionResult<Usuario> Login([FromBody] UsuarioViewLogin user)
         {
-            Usuario? usuario = _userService.Find(UsuarioMapper.MapLogin(user));
+            var usuario = _userService.Find(UsuarioMapper.MapLogin(user));
 
-       
-            return Ok(usuario);
+
+            return CustomResponse(usuario);
+
 
         }
 

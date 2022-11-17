@@ -27,7 +27,19 @@ namespace Do.Quest.Domain.Services
 
         public Usuario? Find(Usuario user)
         {
-            return _userRepository.Find(user);
+            var usuario = _userRepository.Find(user);
+
+            if (usuario == null) 
+            {
+                Notificar($"O usuario { user.Login} não foi encontrado");
+                return null;
+
+            }
+            else
+            {
+                return usuario;
+            }
+
 
         }
 
