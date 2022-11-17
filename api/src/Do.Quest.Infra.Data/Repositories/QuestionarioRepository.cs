@@ -1,6 +1,7 @@
 ﻿using Do.Quest.Domain.Entities;
 using Do.Quest.Domain.Interfaces.Repositories;
 using Do.Quest.Infra.Data.Context;
+using MongoDB.Driver;
 
 namespace Do.Quest.Infra.Data.Repositories
 {

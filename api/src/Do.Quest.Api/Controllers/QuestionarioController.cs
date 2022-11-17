@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Do.Quest.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class QuestionarioController : MainController
     {
         private readonly ILogger<QuestionarioController> _logger;
