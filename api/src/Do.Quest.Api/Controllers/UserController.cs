@@ -27,9 +27,9 @@ namespace Do.Quest.Api.Controllers
         [HttpPost("cadastro")]
         public ActionResult Cadastro([FromBody] UsuarioViewModel user)
         {
-            _userService.AdicionarAsync(UsuarioMapper.Map(user));
+            var usuario = _userService.AdicionarAsync(UsuarioMapper.Map(user));
 
-            return Ok();
+            return CustomResponse(usuario);
 
         }
 

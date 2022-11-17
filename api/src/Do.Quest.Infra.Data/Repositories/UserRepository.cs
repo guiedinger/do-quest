@@ -22,15 +22,11 @@ namespace Do.Quest.Infra.Data.Repositories
         {
             await _questionarioContext.Usuarios.InsertOneAsync(usuario);
         }
-
+        
         public Usuario? Find(Usuario usuario)
         {
             return _questionarioContext.Usuarios.AsQueryable().FirstOrDefault(x => x.Login == usuario.Login && x.Senha == usuario.Senha);
         }
 
-        public Task Login(Usuario usuario)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

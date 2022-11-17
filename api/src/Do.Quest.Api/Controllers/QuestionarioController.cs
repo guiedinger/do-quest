@@ -27,9 +27,10 @@ namespace Do.Quest.Api.Controllers
             _questionarioService = questionarioService;
         }
 
-        [HttpGet("Retonar_Questionario")]
+        [HttpGet("retorna-questionario")]
         public async Task<ActionResult> Get (GrupoUsuario grupoUsuario) {
-            return Ok(await _questionarioService.GetAsync(grupoUsuario));
+            await _questionarioService.GetAsync(grupoUsuario);
+            return Ok();
         }
 
         [HttpPost("grupo-usuario")]

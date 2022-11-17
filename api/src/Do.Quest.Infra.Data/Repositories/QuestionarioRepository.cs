@@ -32,20 +32,22 @@ namespace Do.Quest.Infra.Data.Repositories
             await _questionarioContext.Usuarios.InsertManyAsync(usuarios);
         }
 
-		public async Task CadastrarOuAtualizar(Questionario questionario) {
+        public async Task CadastrarOuAtualizar(Questionario questionario)
+        {
 
             var quest = _questionarioContext.Questionario.AsQueryable().FirstOrDefault(x => x.Id == questionario.Id);
 
-            if(quest != null)
+            if (quest != null)
             {
-                
+
                 await _questionarioContext.Questionario.ReplaceOneAsync(b => b.Id == questionario.Id, questionario);
 
             }
             else
             {
                 await _questionarioContext.Questionario.InsertOneAsync(questionario);
-
+            }
+        }
         public List<Questionario> GetQuestionario(GrupoUsuario grupoUsuario)
         {
             List<Questionario> quest = null;
@@ -65,10 +67,6 @@ namespace Do.Quest.Infra.Data.Repositories
             return quest;
         }
 
-		public async Task Cadastrar(Questionario questionario) {
-         throw new NotImplementedException();
-            //await _questionarioContext.Questionario.InsertManyAsync(questionario);
-		}
 
         Task IQuestionarioRepository.GetQuestionario(GrupoUsuario grupoUsuario)
         {

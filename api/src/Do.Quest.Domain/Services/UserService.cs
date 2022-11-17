@@ -20,8 +20,20 @@ namespace Do.Quest.Domain.Services
 
         public async Task AdicionarAsync(Usuario user)
         {
+            var usuario = _userRepository.Find(user);
 
-            await _userRepository.Cadastro(user);
+            if (usuario == null)
+            {
+          
+                await _userRepository.Cadastro(user);
+
+            }
+            else
+            {
+                Notificar($"O usuario {user.Login} já existe");
+            }
+
+
 
         }
 

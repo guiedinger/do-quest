@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Do.Quest.Domain.Interfaces.Services {
 	public interface IQuestionarioService {
-		Task<string> AdicionarAsync(Questionario questionario);
 
-		Task<Questionario> GetAsync(GrupoUsuario grupoUsuario);
-	}
+        Task GetAsync(GrupoUsuario grupoUsuario);
         Task AddUpdateAsync(Questionario questionario);
+
     }
 }
+
