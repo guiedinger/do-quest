@@ -16,5 +16,14 @@ namespace Do.Quest.Api.Mappers
                                usuarioViewModel.Sobrenome, 
                                usuarioViewModel.DataNascimento);
         }
+
+        public static Usuario MapLogin(UsuarioViewLogin usuarioViewLogin)
+        {
+            if (usuarioViewLogin == null)
+                return default;
+
+            return new Usuario(usuarioViewLogin.Login,
+                               usuarioViewLogin.Senha);
+        }
     }
 }

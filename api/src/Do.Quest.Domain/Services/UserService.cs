@@ -25,5 +25,11 @@ namespace Do.Quest.Domain.Services
             return "cadastrado";
 
         }
+
+        public Usuario? Find(Usuario user)
+        {
+            return _userRepository.Find(user);
+
+        }
     }
 }

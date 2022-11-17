@@ -24,7 +24,7 @@ namespace Do.Quest.Domain.Services {
          return "cadastrado";
       }
 
-		public async Task<string> AdicionarAsync(Questionario questionario) {
+	  public async Task<string> AdicionarAsync(Questionario questionario) {
          await _questionarioRepository.Cadastrar(questionario);
          return "cadastrado";
       }

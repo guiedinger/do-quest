@@ -26,6 +26,13 @@
             RespondeuAoQuestionario = false;
         }
 
+        public Usuario(string login,
+                       string senha)
+        {
+            Login = login;
+            Senha = senha;
+        }
+
         public void DefinirQueRespondeuAoQuestionario()
         {
             RespondeuAoQuestionario = true;

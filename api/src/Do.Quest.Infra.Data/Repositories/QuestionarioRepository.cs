@@ -29,7 +29,8 @@ namespace Do.Quest.Infra.Data.Repositories
         }
 
 		public async Task Cadastrar(Questionario questionario) {
-         await _questionarioContext.Questionario.InsertManyAsync(questionario);
+         throw new NotImplementedException();
+            //await _questionarioContext.Questionario.InsertManyAsync(questionario);
 		}
 	}
 }
