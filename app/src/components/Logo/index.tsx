@@ -1,11 +1,16 @@
-import { Typography } from "@mui/material";
+import { SxProps, Theme, Typography } from "@mui/material";
 
-export const Logo = () => {
+interface IPropsLogo {
+  primary?: boolean;
+  sx?: SxProps<Theme>;
+}
+export const Logo = ({ primary = false, sx = {} }: IPropsLogo) => {
   return (
     <Typography
       variant="h6"
       component="div"
-      sx={{ flexGrow: 1, fontFamily: "Retrips" }}
+      color={primary ? "primary" : undefined}
+      sx={{ flexGrow: 1, fontFamily: "Retrips", ...sx }}
     >
       DoQuest
     </Typography>

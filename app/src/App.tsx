@@ -1,6 +1,6 @@
 import { teal } from "@mui/material/colors";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Template } from "./components/Template";
+import { UserProvider } from "./contexts/User";
 import { Routes } from "./Routes";
 
 const theme = createTheme({
@@ -12,7 +12,9 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
+      <UserProvider>
+        <Routes />
+      </UserProvider>
     </ThemeProvider>
   );
 }
