@@ -50,7 +50,7 @@ namespace Do.Quest.Api.Controllers
             var usuarios = _userService.GetUsuarios();
 
 
-            return CustomResponse(usuarios);
+            return CustomResponse(usuarios.Result);
 
 
         }
