@@ -13,8 +13,10 @@ namespace Do.Quest.Infra.Data.Context
        
         internal IMongoCollection<Usuario> Usuarios => _mongoDataBase.GetCollection<Usuario>("Usuarios");
         internal IMongoCollection<GrupoUsuario> GruposUsuarios => _mongoDataBase.GetCollection<GrupoUsuario>("GruposUsuarios");
+        internal IMongoCollection<Questionario> Questionario => _mongoDataBase.GetCollection<Questionario>("Questionario");
 
-        public QuestionarioContext(IConfiguration configuration)
+
+		  public QuestionarioContext(IConfiguration configuration)
         {
             RegisterConventions();
             _mongoDataBase = new MongoClient(configuration["NoSqlDatabaseSettings:ConnectionString"])

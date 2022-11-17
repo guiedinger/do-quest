@@ -27,5 +27,9 @@ namespace Do.Quest.Infra.Data.Repositories
         {
             await _questionarioContext.Usuarios.InsertManyAsync(usuarios);
         }
-    }
+
+		public async Task Cadastrar(Questionario questionario) {
+         await _questionarioContext.Questionario.InsertManyAsync(questionario);
+		}
+	}
 }
