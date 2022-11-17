@@ -17,8 +17,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<INotificador, Notificador>();
 builder.Services.AddScoped<IGrupoUsuarioService, GrupoUsuarioService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IQuestionarioService, QuestionarioService>();
 builder.Services.AddScoped<IQuestionarioRepository, QuestionarioRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 
 builder.Services.AddScoped<QuestionarioContext>();
 

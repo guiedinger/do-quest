@@ -1,7 +1,10 @@
 ﻿using Do.Quest.Domain.Entities;
+using Do.Quest.Domain.Enums;
 using Do.Quest.Domain.Interfaces.Repositories;
 using Do.Quest.Infra.Data.Context;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Reflection.Metadata;
 
 namespace Do.Quest.Infra.Data.Repositories
 {
@@ -29,9 +32,21 @@ namespace Do.Quest.Infra.Data.Repositories
             await _questionarioContext.Usuarios.InsertManyAsync(usuarios);
         }
 
-		public async Task Cadastrar(Questionario questionario) {
-         throw new NotImplementedException();
-            //await _questionarioContext.Questionario.InsertManyAsync(questionario);
-		}
+		public async Task CadastrarOuAtualizar(Questionario questionario) {
+
+            var quest = _questionarioContext.Questionario.AsQueryable().FirstOrDefault(x => x.Id == questionario.Id);
+
+            if(quest != null)
+            {
+                
+                await _questionarioContext.Questionario.ReplaceOneAsync(b => b.Id == questionario.Id, questionario);
+
+            }
+            else
+            {
+                await _questionarioContext.Questionario.InsertOneAsync(questionario);
+
+            }
+        }
 	}
 }

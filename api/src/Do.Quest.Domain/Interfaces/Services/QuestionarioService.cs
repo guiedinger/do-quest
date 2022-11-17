@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 
 namespace Do.Quest.Domain.Interfaces.Services {
 	public interface IQuestionarioService {
-		Task<string> AdicionarAsync(Questionario questionario);
-	}
+        Task AddUpdateAsync(Questionario questionario);
+    }
 }

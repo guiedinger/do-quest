@@ -17,17 +17,24 @@ namespace Do.Quest.Domain.Services {
          _questionarioRepository = questionarioRepository;
       }
 
-      public async Task<string> AdicionarAsync(Usuario usuario, GrupoUsuario grupoUsuario, IEnumerable<Usuario> usuarios) {
+        public async Task AddUpdateAsync(Questionario questionario)
+        {
+            await _questionarioRepository.CadastrarOuAtualizar(questionario);
+
+        }
+
+        public async Task<string> AdicionarAsync(Usuario usuario, GrupoUsuario grupoUsuario, IEnumerable<Usuario> usuarios) 
+        {
          await _questionarioRepository.AdicionarUsuarioAsync(usuario);
          await _questionarioRepository.AdicionarGrupoUsuariosAsync(grupoUsuario);
          await _questionarioRepository.AdicionarUsuariosAsync(usuarios);
          return "cadastrado";
-      }
+        }
 
-	  public async Task<string> AdicionarAsync(Questionario questionario) {
-         await _questionarioRepository.Cadastrar(questionario);
-         return "cadastrado";
-      }
+	  //public async Task<string> AdicionarAsync(Questionario questionario) {
+   //      await _questionarioRepository.Cadastrar(questionario);
+   //      return "cadastrado";
+   //   }
 	}
 
 }

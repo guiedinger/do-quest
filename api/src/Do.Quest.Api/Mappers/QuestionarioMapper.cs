@@ -1,5 +1,6 @@
 ﻿using Do.Quest.Api.Models.Questionario;
 using Do.Quest.Domain.Entities;
+using Do.Quest.Domain.Enums;
 
 namespace Do.Quest.Api.Mappers {
 	public static class QuestionarioMapper {
