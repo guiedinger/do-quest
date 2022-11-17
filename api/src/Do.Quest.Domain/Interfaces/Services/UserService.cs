@@ -4,7 +4,7 @@ namespace Do.Quest.Domain.Interfaces.Services
 {
     public interface IUserService
     {
-        Task<string> AdicionarAsync(Usuario user);
+        Task AdicionarAsync(Usuario user);
         Usuario? Find(Usuario user);
     }
 }

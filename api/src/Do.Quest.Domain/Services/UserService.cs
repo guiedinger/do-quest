@@ -18,11 +18,10 @@ namespace Do.Quest.Domain.Services
 ;
         }
 
-        public async Task<string> AdicionarAsync(Usuario user)
+        public async Task AdicionarAsync(Usuario user)
         {
-            
+
             await _userRepository.Cadastro(user);
-            return "cadastrado";
 
         }
 
@@ -31,5 +30,6 @@ namespace Do.Quest.Domain.Services
             return _userRepository.Find(user);
 
         }
+
     }
 }

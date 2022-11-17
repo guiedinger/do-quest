@@ -22,14 +22,16 @@ namespace Do.Quest.Api.Controllers
 
 
         [HttpPost("cadastro")]
-        public async Task<ActionResult<string>> Cadastro([FromBody] UsuarioViewModel user)
+        public ActionResult Cadastro([FromBody] UsuarioViewModel user)
         {
-            return Ok(await _userService.AdicionarAsync(UsuarioMapper.Map(user)));
+            _userService.AdicionarAsync(UsuarioMapper.Map(user));
+
+            return Ok();
 
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<Usuario>> Login([FromBody] UsuarioViewLogin user)
+        public ActionResult<Usuario> Login([FromBody] UsuarioViewLogin user)
         {
             Usuario? usuario = _userService.Find(UsuarioMapper.MapLogin(user));
 
