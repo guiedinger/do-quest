@@ -44,6 +44,17 @@ namespace Do.Quest.Api.Controllers
 
         }
 
+        [HttpGet("usuarios")]
+        public ActionResult GetUsuarios()
+        {
+            var usuarios = _userService.GetUsuarios();
+
+
+            return CustomResponse(usuarios);
+
+
+        }
+
 
     }
 }

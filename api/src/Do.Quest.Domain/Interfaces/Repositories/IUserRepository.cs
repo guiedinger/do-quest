@@ -7,5 +7,7 @@ namespace Do.Quest.Domain.Interfaces.Repositories
     {
         Task Cadastro(Usuario usuario);
         Usuario? Find(Usuario user);
+        Task<List<Usuario>> GetUsuarios();
+
     }
 }

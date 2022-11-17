@@ -28,5 +28,10 @@ namespace Do.Quest.Infra.Data.Repositories
             return _questionarioContext.Usuarios.AsQueryable().FirstOrDefault(x => x.Login == usuario.Login && x.Senha == usuario.Senha);
         }
 
+        public Task<List<Usuario>> GetUsuarios()
+        {
+            return _questionarioContext.Usuarios.Find(_ => true).ToListAsync();
+
+        }
     }
 }

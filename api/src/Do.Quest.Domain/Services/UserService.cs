@@ -55,5 +55,9 @@ namespace Do.Quest.Domain.Services
 
         }
 
+        public Task<List<Usuario>> GetUsuarios()
+        {
+           return _userRepository.GetUsuarios();
+        }
     }
 }
