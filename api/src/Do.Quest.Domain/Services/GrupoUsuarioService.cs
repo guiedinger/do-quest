@@ -19,13 +19,17 @@ namespace Do.Quest.Domain.Services
 
         public async Task<string> AdicionarAsync(GrupoUsuario grupoUsuario)
         {
-            if (!ExecutarValidacao(new GrupoUsuarioValidator(), grupoUsuario)) 
+            if (!EstaValido(grupoUsuario)) 
                 return null;
 
-            await _questionarioRepository.AdicionarUsuariosAsync(grupoUsuario.Usuarios);
             await _questionarioRepository.AdicionarGrupoUsuariosAsync(grupoUsuario);
             
             return grupoUsuario.Id.ToString();
+        }
+
+        private bool EstaValido(GrupoUsuario grupoUsuario)
+        {
+            return ExecutarValidacao(new GrupoUsuarioValidator(), grupoUsuario);
         }
     }
 }

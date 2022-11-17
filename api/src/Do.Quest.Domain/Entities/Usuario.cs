@@ -9,6 +9,7 @@
         public DateTime DataNascimento { get; private set; }
         public GrupoUsuario GrupoUsuario { get; private set; }
         public bool RespondeuAoQuestionario{ get; private set; }
+        public bool IsAdmin { get; private set; }
 
         private Usuario() { }
 
@@ -16,7 +17,7 @@
                        string senha, 
                        string nome, 
                        string sobrenome, 
-                       DateTime dataNascimento)
+                       DateTime dataNascimento, bool isAdmin)
         {
             Login = login;
             Senha = senha;
@@ -24,6 +25,7 @@
             Sobrenome = sobrenome;
             DataNascimento = dataNascimento;
             RespondeuAoQuestionario = false;
+            IsAdmin = isAdmin;
         }
 
         public Usuario(string login,

@@ -11,4 +11,6 @@ namespace Do.Quest.Domain.Interfaces.Services {
 
 		Task<Questionario> GetAsync(GrupoUsuario grupoUsuario);
 	}
+        Task AddUpdateAsync(Questionario questionario);
+    }
 }

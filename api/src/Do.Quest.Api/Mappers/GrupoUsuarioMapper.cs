@@ -11,10 +11,6 @@ namespace Do.Quest.Api.Mappers
                 return default;
 
             var grupoUsuario = new GrupoUsuario(grupoUsuarioViewModel.Descricao);
-            foreach (var usuario in grupoUsuarioViewModel.Usuarios)
-            {
-                grupoUsuario.AdicionarUsuario(UsuarioMapper.Map(usuario));
-            }
 
             return grupoUsuario;
         }
