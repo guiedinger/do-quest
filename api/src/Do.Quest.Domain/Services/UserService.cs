@@ -8,12 +8,14 @@ namespace Do.Quest.Domain.Services
     public class UserService : BaseService, IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IGrupoUsuarioService _grupoUsuarioService;
 
         public UserService(IUserRepository userRepository,
+                           IGrupoUsuarioService grupoUsuarioService,
                            INotificador notificador) : base(notificador)
         {
             _userRepository = userRepository;
-;
+            _grupoUsuarioService = grupoUsuarioService;
         }
 
         public async Task<Usuario> AdicionarAsync(Usuario user)
@@ -31,6 +33,8 @@ namespace Do.Quest.Domain.Services
             user.AtualizarGrupoUsuario(grupoUsuarios?.Id, grupoUsuarios);
 
             await _userRepository.CadastroAsync(user);
+
+            await _grupoUsuarioService.AtualizarUsuarioAsync(user);
 
             return user;
         }
@@ -57,11 +61,14 @@ namespace Do.Quest.Domain.Services
             if (TemNotificacao())
                 return default;
 
+            usuarioAtual.GrupoUsuarioRemovidoEvent += RemoverUsuarioDoGrupoUsuarios;
             usuarioAtual.AtualizarGrupoUsuario(grupoUsuarios?.Id, grupoUsuarios);
    
             AtualizarUsuario(usuarioAtual, usuario);
             
             await _userRepository.AtualizarAsync(usuarioAtual);
+
+            await _grupoUsuarioService.AtualizarUsuarioAsync(usuarioAtual);
 
             return usuarioAtual;
         }
@@ -103,6 +110,11 @@ namespace Do.Quest.Domain.Services
                 Notificar($"O grupo de usuários informado não existe.");
 
             return grupoUsuarios;
+        }
+
+        static void RemoverUsuarioDoGrupoUsuarios(object sender, GrupoUsuarioRemovidoEventArgs e)
+        {
+            e.GrupoUsuario.RemoverUsuario(e.Usuario);
         }
     }
 }

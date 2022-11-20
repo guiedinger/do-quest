@@ -8,13 +8,13 @@ namespace Do.Quest.Domain.Services
 {
     public class GrupoUsuarioService : BaseService, IGrupoUsuarioService
     {
-        private readonly IUserRepository _userRepositoryRepository;
+        private readonly IUserRepository _userRepository;
 
         public GrupoUsuarioService(IUserRepository userRepository, 
                                    INotificador notificador) 
                                    : base (notificador)
         {
-            _userRepositoryRepository = userRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<string> AdicionarAsync(GrupoUsuario grupoUsuario)
@@ -22,14 +22,31 @@ namespace Do.Quest.Domain.Services
             if (!EstaValido(grupoUsuario)) 
                 return null;
 
-            await _userRepositoryRepository.AdicionarGrupoUsuariosAsync(grupoUsuario);
+            await _userRepository.AdicionarGrupoUsuariosAsync(grupoUsuario);
             
             return grupoUsuario.Id.ToString();
         }
 
+        public async Task AtualizarUsuarioAsync(Usuario usuario)
+        {
+            if (usuario?.GrupoUsuario?.Id is null)
+                return;
+         
+            var grupoUsuario = await _userRepository.ObterGrupoUsuariosAsync(usuario.GrupoUsuario.Id);
+            
+            if (grupoUsuario is null)
+                Notificar("Grupo de usuários não encontrado.");
+
+            if (TemNotificacao())
+                return;
+
+            if (grupoUsuario.AdicionarUsuario(usuario))
+                await _userRepository.AtualizarGrupoUsuariosAsync(grupoUsuario);
+        }
+
         public async Task<IEnumerable<GrupoUsuario>> ListarAsync()
         {
-            return await _userRepositoryRepository.ListarGruposUsuariosAsync();
+            return await _userRepository.ListarGruposUsuariosAsync();
         }
 
         private bool EstaValido(GrupoUsuario grupoUsuario)

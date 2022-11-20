@@ -2,7 +2,6 @@
 using Do.Quest.Domain.Notifications;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace Do.Quest.Api.Controllers
 {

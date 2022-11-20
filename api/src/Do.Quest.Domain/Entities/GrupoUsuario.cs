@@ -11,9 +11,19 @@
             Usuarios = new List<Usuario>();
         }
 
-        public void AdicionarUsuario(Usuario usuario)
+        public bool AdicionarUsuario(Usuario usuario)
         {
+            if (Usuarios.Any(u => u.Id.Equals(usuario.Id)))
+                return false;
+            
             Usuarios.Add(usuario);
+            return true;
+        }
+
+        public void RemoverUsuario(Usuario usuario)
+        {
+            if (Usuarios.Any(u => u.Id.Equals(usuario.Id)))
+                Usuarios.Remove(usuario);
         }
     }
 }

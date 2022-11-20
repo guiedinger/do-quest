@@ -43,8 +43,34 @@
 
         public void AtualizarGrupoUsuario(Guid? grupoUsuarioId, GrupoUsuario grupoUsuario)
         {
+            if(grupoUsuario == null && GrupoUsuario is not null)
+            {
+                var args = new GrupoUsuarioRemovidoEventArgs();
+                args.GrupoUsuario = GrupoUsuario;
+                args.Usuario = this;
+                OnThresholdReached(args);
+            }
+
             GrupoUsuarioId = grupoUsuarioId;
             GrupoUsuario = grupoUsuario;
         }
+
+        public event EventHandler<GrupoUsuarioRemovidoEventArgs> GrupoUsuarioRemovidoEvent;
+
+        protected virtual void OnThresholdReached(GrupoUsuarioRemovidoEventArgs args)
+        {
+            EventHandler<GrupoUsuarioRemovidoEventArgs> handler = GrupoUsuarioRemovidoEvent;
+            if (handler != null)
+            {
+                handler(this, args);
+            }
+        }
+    }
+
+    public class GrupoUsuarioRemovidoEventArgs : EventArgs
+    {
+        public GrupoUsuario GrupoUsuario { get; set; }
+
+        public Usuario Usuario { get; set; }
     }
 }

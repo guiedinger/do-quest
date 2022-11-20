@@ -12,6 +12,7 @@ namespace Do.Quest.Domain.Interfaces.Repositories
         Task<Usuario> FindByLoginAsync(string login);
         Task<List<Usuario>> GetUsuariosAsync();
         Task AdicionarGrupoUsuariosAsync(GrupoUsuario grupoUsuario);
+        Task AtualizarGrupoUsuariosAsync(GrupoUsuario grupoUsuario);
         Task<GrupoUsuario> ObterGrupoUsuariosAsync(Guid id);
         Task<IEnumerable<GrupoUsuario>> ListarGruposUsuariosAsync();
 

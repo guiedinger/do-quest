@@ -63,5 +63,10 @@ namespace Do.Quest.Infra.Data.Repositories
         {
             return await _questionarioContext.GruposUsuarios.ToListAsync();
         }
+
+        public async Task AtualizarGrupoUsuariosAsync(GrupoUsuario grupoUsuario)
+        {
+            await _questionarioContext.GruposUsuarios.ReplaceOneAsync(r => r.Id.Equals(grupoUsuario.Id), grupoUsuario);
+        }
     }
 }
