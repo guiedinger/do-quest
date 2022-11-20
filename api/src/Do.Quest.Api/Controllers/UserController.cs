@@ -37,11 +37,11 @@ namespace Do.Quest.Api.Controllers
         }
 
         [HttpPost("cadastro")]
-        public ActionResult Cadastro([FromBody] UsuarioViewModel user)
+        public async Task<ActionResult<UsuarioViewModel>> Cadastro([FromBody] UsuarioViewModel user)
         {
-            var usuario = _userService.AdicionarAsync(UsuarioMapper.Map(user));
+            var usuario = await _userService.AdicionarAsync(UsuarioMapper.Map(user));
 
-            return CustomResponse(usuario);
+            return CustomResponse(UsuarioMapper.Map(usuario));
         }
 
         [HttpPut("cadastro/{usuarioId:guid}")]

@@ -16,14 +16,23 @@ namespace Do.Quest.Domain.Services
 ;
         }
 
-        public async Task AdicionarAsync(Usuario user)
+        public async Task<Usuario> AdicionarAsync(Usuario user)
         {
-            var usuario = _userRepository.Find(user);
+            var usuario = await _userRepository.FindByLoginAsync(user.Login);
 
-            if (usuario is null)
-                await _userRepository.CadastroAsync(user);
+            if (usuario is not null)
+                Notificar($"O usuario {user.Login} já existe");
 
-            Notificar($"O usuario {user.Login} já existe");
+            var grupoUsuarios = await ValidarGrupoUsuarios(user);
+
+            if (TemNotificacao())
+                return default;
+
+            user.AtualizarGrupoUsuario(grupoUsuarios?.Id, grupoUsuarios);
+
+            await _userRepository.CadastroAsync(user);
+
+            return user;
         }
 
         public async Task<Usuario> AtualizarAsync(Guid id, Usuario usuario)
@@ -43,18 +52,12 @@ namespace Do.Quest.Domain.Services
                 return default;
             }
 
-            if (usuario.GrupoUsuarioId is not null)
-            {
-                var grupoUsuarios = await _userRepository.ObterGrupoUsuariosAsync(usuario.GrupoUsuarioId.Value);
-                
-                if (grupoUsuarios is null)
-                {
-                    Notificar($"Impossível atualizar, o grupo de usuários informado não existe.");
-                    return default;
-                }
+            var grupoUsuarios = await ValidarGrupoUsuarios(usuario);
+            
+            if (TemNotificacao())
+                return default;
 
-                usuarioAtual.AtualizarGrupoUsuario(grupoUsuarios?.Id, grupoUsuarios);
-            }
+            usuarioAtual.AtualizarGrupoUsuario(grupoUsuarios?.Id, grupoUsuarios);
    
             AtualizarUsuario(usuarioAtual, usuario);
             
@@ -87,6 +90,19 @@ namespace Do.Quest.Domain.Services
             usuarioAtual.Sobrenome = usuarioAtualizado.Sobrenome;
             usuarioAtual.DataNascimento = usuarioAtualizado.DataNascimento;
             usuarioAtual.IsAdmin = usuarioAtualizado.IsAdmin;
+        }
+
+        private async Task<GrupoUsuario> ValidarGrupoUsuarios(Usuario usuario)
+        {
+            if (usuario.GrupoUsuarioId is null)
+                return default;
+
+            var grupoUsuarios = await _userRepository.ObterGrupoUsuariosAsync(usuario.GrupoUsuarioId.Value);
+
+            if (grupoUsuarios is null)
+                Notificar($"O grupo de usuários informado não existe.");
+
+            return grupoUsuarios;
         }
     }
 }
