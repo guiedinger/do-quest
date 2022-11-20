@@ -5,5 +5,6 @@ namespace Do.Quest.Domain.Interfaces.Services
     public interface IGrupoUsuarioService
     {
         Task<string> AdicionarAsync(GrupoUsuario grupoUsuario);
+        Task<IEnumerable<GrupoUsuario>> ListarAsync();
     }
 }

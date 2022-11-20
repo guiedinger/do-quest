@@ -8,13 +8,13 @@ namespace Do.Quest.Domain.Services
 {
     public class GrupoUsuarioService : BaseService, IGrupoUsuarioService
     {
-        private readonly IQuestionarioRepository _questionarioRepository;
+        private readonly IUserRepository _userRepositoryRepository;
 
-        public GrupoUsuarioService(IQuestionarioRepository questionarioRepository, 
+        public GrupoUsuarioService(IUserRepository userRepository, 
                                    INotificador notificador) 
                                    : base (notificador)
         {
-            _questionarioRepository = questionarioRepository;
+            _userRepositoryRepository = userRepository;
         }
 
         public async Task<string> AdicionarAsync(GrupoUsuario grupoUsuario)
@@ -22,9 +22,14 @@ namespace Do.Quest.Domain.Services
             if (!EstaValido(grupoUsuario)) 
                 return null;
 
-            await _questionarioRepository.AdicionarGrupoUsuariosAsync(grupoUsuario);
+            await _userRepositoryRepository.AdicionarGrupoUsuariosAsync(grupoUsuario);
             
             return grupoUsuario.Id.ToString();
+        }
+
+        public async Task<IEnumerable<GrupoUsuario>> ListarAsync()
+        {
+            return await _userRepositoryRepository.ListarGruposUsuariosAsync();
         }
 
         private bool EstaValido(GrupoUsuario grupoUsuario)

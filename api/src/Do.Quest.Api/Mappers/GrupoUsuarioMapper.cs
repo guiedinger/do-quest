@@ -14,5 +14,19 @@ namespace Do.Quest.Api.Mappers
 
             return grupoUsuario;
         }
+
+        public static IEnumerable<GrupoUsuarioViewModel> Map(IEnumerable<GrupoUsuario> gruposUsuarios)
+        {
+            if (gruposUsuarios == null)
+                return default;
+
+            var grupoUsuarioResponse = gruposUsuarios.Select(gu => new GrupoUsuarioViewModel
+            {
+                Descricao = gu.Descricao,
+                Id = gu.Id
+            });
+
+            return grupoUsuarioResponse;
+        }
     }
 }

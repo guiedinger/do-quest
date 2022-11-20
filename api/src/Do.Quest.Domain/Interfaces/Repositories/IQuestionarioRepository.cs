@@ -4,9 +4,6 @@ namespace Do.Quest.Domain.Interfaces.Repositories
 {
    public interface IQuestionarioRepository {
       Task CadastrarOuAtualizar(Questionario questionario);
-      Task AdicionarUsuarioAsync(Usuario usuario);
-      Task AdicionarGrupoUsuariosAsync(GrupoUsuario grupoUsuario);
-      Task AdicionarUsuariosAsync(IEnumerable<Usuario> usuarios);
       Questionario? GetQuestionario(Guid idQuestionario);
       Task GetAsync(GrupoUsuario grupoUsuario);
     }

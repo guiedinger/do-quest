@@ -1,10 +1,7 @@
 ﻿using Do.Quest.Domain.Entities;
-using Do.Quest.Domain.Enums;
 using Do.Quest.Domain.Interfaces.Repositories;
 using Do.Quest.Infra.Data.Context;
-using MongoDB.Bson;
 using MongoDB.Driver;
-using System.Reflection.Metadata;
 
 namespace Do.Quest.Infra.Data.Repositories
 {
@@ -15,21 +12,6 @@ namespace Do.Quest.Infra.Data.Repositories
         public QuestionarioRepository(QuestionarioContext questionarioContext)
         {
             _questionarioContext = questionarioContext;
-        }
-
-        public async Task AdicionarGrupoUsuariosAsync(GrupoUsuario grupoUsuario)
-        {
-            await _questionarioContext.GruposUsuarios.InsertOneAsync(grupoUsuario);
-        }
-
-        public async Task AdicionarUsuarioAsync(Usuario usuario)
-        {
-           await _questionarioContext.Usuarios.InsertOneAsync(usuario);
-        }
-
-        public async Task AdicionarUsuariosAsync(IEnumerable<Usuario> usuarios)
-        {
-            await _questionarioContext.Usuarios.InsertManyAsync(usuarios);
         }
 
         public async Task CadastrarOuAtualizar(Questionario questionario)
@@ -73,7 +55,6 @@ namespace Do.Quest.Infra.Data.Repositories
 
             return quest;
         }
-
 
         public Questionario? GetQuestionario(Guid idQuest)
         {

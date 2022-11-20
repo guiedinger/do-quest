@@ -2,14 +2,15 @@
 {
     public class Usuario : Entity
     {
-        public string Login { get; private set; }
-        public string Senha { get; private set; }
-        public string Nome { get; private set; }
-        public string Sobrenome{ get; private set; }
-        public DateTime DataNascimento { get; private set; }
+        public string Login { get; set; }
+        public string Senha { get; set; }
+        public string Nome { get; set; }
+        public string Sobrenome{ get; set; }
+        public DateTime DataNascimento { get; set; }
+        public Guid? GrupoUsuarioId { get; private set; }
         public GrupoUsuario GrupoUsuario { get; private set; }
         public bool RespondeuAoQuestionario{ get; private set; }
-        public bool IsAdmin { get; private set; }
+        public bool IsAdmin { get; set; }
 
         private Usuario() { }
 
@@ -38,6 +39,12 @@
         public void DefinirQueRespondeuAoQuestionario()
         {
             RespondeuAoQuestionario = true;
+        }
+
+        public void AtualizarGrupoUsuario(Guid? grupoUsuarioId, GrupoUsuario grupoUsuario)
+        {
+            GrupoUsuarioId = grupoUsuarioId;
+            GrupoUsuario = grupoUsuario;
         }
     }
 }

@@ -25,5 +25,7 @@ namespace Do.Quest.Api.Models.Usuario
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public bool IsAdmin { get; set; }
+
+        public Guid? GrupoUsuarioId { get; set; }
     }
 }
