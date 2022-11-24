@@ -1,4 +1,6 @@
-﻿namespace Do.Quest.Domain.Entities
+﻿using Do.Quest.Domain.Enums;
+
+namespace Do.Quest.Domain.Entities
 {
     public class Pergunta : Entity
     {

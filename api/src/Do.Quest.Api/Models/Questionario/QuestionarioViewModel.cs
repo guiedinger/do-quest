@@ -1,4 +1,6 @@
-﻿using Do.Quest.Domain.Enums;
+﻿using Do.Quest.Api.Enuns;
+using Do.Quest.Api.Models.GrupoUsuario;
+using Do.Quest.Api.Models.Pergunta;
 using System.ComponentModel.DataAnnotations;
 
 namespace Do.Quest.Api.Models.Questionario {
@@ -16,5 +18,11 @@ namespace Do.Quest.Api.Models.Questionario {
       [Required(ErrorMessage = "O campo {0} é obrigatório")]
       public ESituacao Situacao { get; set; }
 
-   }
+      [Required(ErrorMessage = "O campo {0} é obrigatório")]
+      public IEnumerable<GrupoUsuarioViewModel> GruposUsuarios { get; set; }
+      
+      [Required(ErrorMessage = "O campo {0} é obrigatório")]
+      public IEnumerable<PerguntaViewModel> Perguntas { get; set; }
+
+    }
 }

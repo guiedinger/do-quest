@@ -23,11 +23,11 @@ namespace Do.Quest.Api.Controllers
             _questionarioService = questionarioService;
         }
 
-        [HttpGet("retorna-questionario")]
-        public async Task<ActionResult> Get (GrupoUsuario grupoUsuario) {
-            await _questionarioService.GetAsync(grupoUsuario);
-            return Ok();
-        }
+        //[HttpGet("retorna-questionario")]
+        //public async Task<ActionResult> Get (GrupoUsuario grupoUsuario) {
+        //    await _questionarioService.GetAsync(grupoUsuario);
+        //    return Ok();
+        //}
 
         [HttpGet("questionario/{id}")]
         public ActionResult GetQuestionarioById([FromRoute] Guid id)
@@ -37,7 +37,7 @@ namespace Do.Quest.Api.Controllers
         }
 
         [HttpPost("questionario")]
-        public async Task<ActionResult<Questionario>> AddUpdateQuestionario(QuestionarioViewModel questionarioRequest)
+        public async Task<ActionResult<QuestionarioViewModel>> AddUpdateQuestionario(QuestionarioViewModel questionarioRequest)
         {
             await _questionarioService.AddUpdateAsync(QuestionarioMapper.Map(questionarioRequest));
             return Ok();

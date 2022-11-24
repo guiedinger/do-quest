@@ -13,13 +13,13 @@ namespace Do.Quest.Domain.Entities
 
         private Questionario() { }
 
-        public Questionario(string descricao, DateTime dataInicio, DateTime dataFim) {
+        public Questionario(string descricao, DateTime dataInicio, DateTime dataFim, List<GrupoUsuario> grupoUsuario, List<Pergunta> perguntas) {
             Descricao = descricao;
             DataInicio = dataInicio;
             DataFim = dataFim;
-            Situacao = ESituacao.EmConstruacao;
-            GruposUsuarios = new List<GrupoUsuario>();
-            Perguntas = new List<Pergunta>();
+            Situacao = ESituacao.Liberado;
+            GruposUsuarios = grupoUsuario;
+            Perguntas = perguntas;
         }
 
         public void AdicionarPergunta(Pergunta pergunta) {

@@ -16,6 +16,13 @@ namespace Do.Quest.Domain.Entities
             Tipo = ETipo.Objetiva;
         }
 
+        public RespostaObjetiva(List<Alternativa> alternativas)
+        {
+            Id = Guid.NewGuid();
+            Alternativas = alternativas;
+            Tipo = ETipo.Objetiva;
+        }
+
         public void EscolherAlternativa(string codigo)
         {
             Data = DateTime.Now;

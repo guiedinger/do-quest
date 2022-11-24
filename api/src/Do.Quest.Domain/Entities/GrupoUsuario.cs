@@ -11,6 +11,13 @@
             Usuarios = new List<Usuario>();
         }
 
+        public GrupoUsuario(string descricao, Guid id)
+        {
+            Id = id;
+            Descricao = descricao;
+            Usuarios = new List<Usuario>();
+        }
+
         public void AdicionarUsuario(Usuario usuario)
         {
             Usuarios.Add(usuario);
