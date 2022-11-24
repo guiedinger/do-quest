@@ -1,54 +1,44 @@
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import { Button, Paper, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Template } from "../components/Template";
+import { api } from "../services/Api";
 
 interface IUsuario {
-  id: string;
   login: string;
-  nome: string;
   senha: string;
+  nome: string;
   sobrenome: string;
-  dataNascimento: Date;
+  dataNascimento: string;
+  grupoUsuario: any;
+  respondeuAoQuestionario: boolean;
+  isAdmin: boolean;
+  id: string;
 }
 
-const usuarios: IUsuario[] = [
-  {
-    id: "1",
-    login: "admin",
-    senha: "123",
-    nome: "Guilherme",
-    sobrenome: "Edinger",
-    dataNascimento: new Date(),
-  },
-  {
-    id: "2",
-    login: "admin1",
-    senha: "123",
-    nome: "Jeferson",
-    sobrenome: "Michelin",
-    dataNascimento: new Date(),
-  },
-  {
-    id: "3",
-    login: "admin2",
-    senha: "123",
-    nome: "Pedro",
-    sobrenome: "Henrique",
-    dataNascimento: new Date(),
-  },
-  {
-    id: "4",
-    login: "admin3",
-    senha: "123",
-    nome: "Thomas",
-    sobrenome: "Toniolo",
-    dataNascimento: new Date(),
-  },
-];
+const usuarios: IUsuario[] = [];
 
 export const Usuarios = () => {
+  const [usuarios, setUsuarios] = useState<IUsuario[]>([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const controller = new AbortController();
+    api
+      .get("api/User/usuarios", {
+        signal: controller.signal,
+      })
+      .then((res) => {
+        setUsuarios(res.data.data);
+      });
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
+
   return (
     <Template>
       <Typography
@@ -63,6 +53,7 @@ export const Usuarios = () => {
         variant="contained"
         endIcon={<AddIcon />}
         sx={{ alignSelf: "flex-end", margin: "1rem" }}
+        onClick={() => navigate(`/usuario`)}
       >
         Novo usuário
       </Button>

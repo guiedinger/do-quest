@@ -1,7 +1,7 @@
 import { Button, Paper, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Template } from "../components/Template";
-import { IQuestionario } from "./Questionario";
+import { IQuestionario } from "./QuestionarioUsuario";
 
 const questionarios: IQuestionario[] = [
   {
@@ -21,7 +21,7 @@ const questionarios: IQuestionario[] = [
   },
 ];
 
-export const Questionarios = () => {
+export const QuestionariosUsuario = () => {
   return (
     <Template>
       <Typography

@@ -28,7 +28,7 @@ export interface IAlternativa {
   descricao: string;
 }
 
-export const Questionario = () => {
+export const QuestionarioUsuario = () => {
   const questionarioAtual: IQuestionario = {
     id: "1",
     descricao: "Avaliação do curso",
