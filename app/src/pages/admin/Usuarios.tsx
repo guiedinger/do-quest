@@ -3,8 +3,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Button, Paper, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Template } from "../components/Template";
-import { api } from "../services/Api";
+import { Template } from "../../components/Template";
+import { api } from "../../services/Api";
 
 interface IUsuario {
   login: string;
@@ -17,8 +17,6 @@ interface IUsuario {
   isAdmin: boolean;
   id: string;
 }
-
-const usuarios: IUsuario[] = [];
 
 export const Usuarios = () => {
   const [usuarios, setUsuarios] = useState<IUsuario[]>([]);

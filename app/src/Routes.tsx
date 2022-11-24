@@ -8,11 +8,13 @@ import useUser from "./hooks/useUser";
 import { Login } from "./pages/Login";
 import { QuestionarioUsuario } from "./pages/QuestionarioUsuario";
 import { QuestionariosUsuario } from "./pages/QuestionariosUsuario";
-import { Usuario } from "./pages/Usuario";
-import { Usuarios } from "./pages/Usuarios";
-import { HomeAdmin } from "./pages/HomeAdmin";
-import { QuestionariosAdmin } from "./pages/QuestionariosAdmin";
-import { QuestionarioAdmin } from "./pages/QuestionarioAdmin";
+import { Usuario } from "./pages/admin/Usuario";
+import { Usuarios } from "./pages/admin/Usuarios";
+import { HomeAdmin } from "./pages/admin/HomeAdmin";
+import { QuestionariosAdmin } from "./pages/admin/QuestionariosAdmin";
+import { QuestionarioAdmin } from "./pages/admin/QuestionarioAdmin";
+import { GrupoUsuarios } from "./pages/admin/GrupoUsuarios";
+import { GrupoUsuariosCadastro } from "./pages/admin/GrupoUsuariosCadastro";
 
 export const Routes = () => {
   const { user } = useUser();
@@ -26,6 +28,12 @@ export const Routes = () => {
               <Route path="/" element={<HomeAdmin />} />
               <Route path="/usuarios" element={<Usuarios />} />
               <Route path="/usuario" element={<Usuario />} />
+              <Route path="/usuario/:usuarioId" element={<Usuario />} />
+              <Route path="/grupo-usuarios" element={<GrupoUsuarios />} />
+              <Route
+                path="/grupo-usuarios/cadastro"
+                element={<GrupoUsuariosCadastro />}
+              />
               <Route path="/questionarios" element={<QuestionariosAdmin />} />
               <Route path="/questionario" element={<QuestionarioAdmin />} />
               <Route path="*" element={<Navigate to="/" />} />

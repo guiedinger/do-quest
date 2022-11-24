@@ -1,8 +1,8 @@
 import AddIcon from "@mui/icons-material/Add";
 import { Button, Paper, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Template } from "../components/Template";
-import { IQuestionario } from "./QuestionarioUsuario";
+import { Template } from "../../components/Template";
+import { IQuestionario } from "../QuestionarioUsuario";
 
 const questionarios: IQuestionario[] = [
   {

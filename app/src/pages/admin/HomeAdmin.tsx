@@ -1,6 +1,6 @@
 import { Button, Paper, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Template } from "../components/Template";
+import { Template } from "../../components/Template";
 
 export const HomeAdmin = () => {
   const navigate = useNavigate();
@@ -25,6 +25,9 @@ export const HomeAdmin = () => {
         </Typography>
         <Button variant="contained" onClick={() => navigate(`/usuarios`)}>
           Usuários
+        </Button>
+        <Button variant="contained" onClick={() => navigate(`/grupo-usuarios`)}>
+          Grupo de Usuários
         </Button>
         <Button variant="contained" onClick={() => navigate(`/questionarios`)}>
           Questionários
