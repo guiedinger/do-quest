@@ -77,6 +77,17 @@ namespace Do.Quest.Domain.Services
             return default;
         }
 
+        public Usuario? Find(Guid userId)
+        {
+            var usuario = _userRepository.GetUsuariosAsync().Result.FirstOrDefault(x => x.Id == userId);
+
+            if (usuario is not null)
+                return usuario;
+
+            Notificar($"O usuario de id : {userId} não foi encontrado");
+            return default;
+        }
+
         public Task<List<Usuario>> GetUsuarios()
         {
            return _userRepository.GetUsuariosAsync();

@@ -71,5 +71,13 @@ namespace Do.Quest.Api.Controllers
 
             return CustomResponse(usuarios.Result);
         }
+
+        [HttpGet("usuario/{usuarioId:guid}")]
+        public ActionResult<Usuario> GetUsuario([FromRoute] Guid usuarioId)
+        {
+            var usuario = _userService.Find(usuarioId);
+
+            return CustomResponse(usuario);
+        }
     }
 }

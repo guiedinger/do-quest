@@ -49,5 +49,10 @@ namespace Do.Quest.Api.Mappers
             return new Usuario(usuarioViewLogin.Login,
                                usuarioViewLogin.Senha);
         }
+
+        public static Usuario MapUsuario(Guid usuarioId)
+        {
+            return new Usuario(usuarioId);
+        }
     }
 }

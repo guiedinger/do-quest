@@ -2,6 +2,7 @@
 {
     public class Usuario : Entity
     {
+        public Guid? _Id { get; set; }
         public string Login { get; set; }
         public string Senha { get; set; }
         public string Nome { get; set; }
@@ -27,6 +28,11 @@
             DataNascimento = dataNascimento;
             RespondeuAoQuestionario = false;
             IsAdmin = isAdmin;
+        }
+
+        public Usuario(Guid id)
+        {
+            _Id = id;
         }
 
         public Usuario(string login,
